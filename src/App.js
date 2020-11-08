@@ -1,38 +1,40 @@
 import React from "react";
-import Sidebar from "./Components/Sidebar/Sidebar";
+import Folders from "./Components/Folders/Folders";
 
-import listSvg from './assets/images/list.svg';
-import greenSvg from './assets/images/green.svg';
+import listSvg from "./assets/images/list.svg";
+import greenSvg from "./assets/images/green.svg";
+import AddButton from "./Components/AddButton/AddButton";
 
 
 function App() {
     return (
         <div className="todo">
             <div className="todo__sidebar">
-                <Sidebar items={[
+                <Folders items={[
                     {
                         icon: listSvg,
-                        title: 'All tasks',
+                        title: "All tasks",
                         active: false
                     }
                 ]}/>
-                <Sidebar items={[
+                <Folders items={[
                     {
                         icon: greenSvg,
-                        title: 'Lessons',
+                        title: "Lessons",
                         active: true
                     },
                     {
                         icon: greenSvg,
-                        title: 'Game',
+                        title: "Game",
                         active: true
                     },
                     {
                         icon: greenSvg,
-                        title: 'Work',
+                        title: "Work",
                         active: false
                     }
                 ]}/>
+                <AddButton/>
             </div>
             <div className="todo__main">
                 m

@@ -1,6 +1,6 @@
 import React from "react";
 
-const Sidebar = (props) => {
+const Folders = (props) => {
     return (
         <ul className="todo__items">
             {
@@ -17,4 +17,4 @@ const Sidebar = (props) => {
     );
 }
 
-export default Sidebar;
+export default Folders;
