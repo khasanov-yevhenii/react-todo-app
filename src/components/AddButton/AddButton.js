@@ -4,8 +4,8 @@ import AddButtonPopup from "./AddButtonPopup/AddButtonPopup";
 import plusSvg from './../../assets/images/plus.svg';
 
 
-const AddButton = () => {
-    const [openPopup, setOpenPopup] = useState(!false);
+const AddButton = (props) => {
+    const [openPopup, setOpenPopup] = useState(false);
 
     return (
         <div className="add-folder">
@@ -17,7 +17,7 @@ const AddButton = () => {
                     <span>Add folder</span>
                 </li>
             </ul>
-            {openPopup && <AddButtonPopup/>}
+            {openPopup && <AddButtonPopup onCreateFolder={props.onCreateFolder} setOpenPopup={setOpenPopup}/>}
         </div>
     );
 }

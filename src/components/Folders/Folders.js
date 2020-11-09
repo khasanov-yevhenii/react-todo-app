@@ -1,14 +1,15 @@
 import React from "react";
 
+import "./Folders.scss";
+
+
 const Folders = (props) => {
     return (
         <ul className="todo__items">
             {
                 props.items.map(item => (
                     <li className={item.active ? 'active' : ''} key={item.title}>
-                        <i>
-                            <img src={item.icon} alt="list"/>
-                        </i>
+                        <span className={"badge " + item.color}/>
                         <span>{item.title}</span>
                     </li>
                 ))
