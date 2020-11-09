@@ -4,10 +4,10 @@ import Tasks from "./Tasks/Tasks";
 import "./Main.scss";
 
 
-const Main = () => {
+const Main = (props) => {
     return (
         <div className="todo__main">
-            <Tasks/>
+            <Tasks folder={props.folders[0]}/>
         </div>
     );
 }

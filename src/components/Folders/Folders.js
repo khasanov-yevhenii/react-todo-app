@@ -7,12 +7,12 @@ const Folders = (props) => {
     return (
         <ul className="todo__items">
             {
-                props.items.map(item => (
-                    <li className={item.active ? 'active' : ''} key={item.title}>
-                        <span className={"badge " + item.color}/>
-                        <span className="folder-title">{item.title}</span>
+                props.folders.map(folder => (
+                    <li className={folder.active ? 'active' : ''} key={folder.title}>
+                        <span className={"badge " + folder.color}/>
+                        <span className="folder-title">{folder.title}</span>
                         <img onClick={() => {
-                            props.onRemoveFolder(item);
+                            props.onRemoveFolder(folder.id);
                         }} className="folder-remove" src={removeSvg} alt="remove"/>
                     </li>
                 ))

@@ -50,19 +50,31 @@ const baseFolders = [
         id: 1,
         title: 'Lessons',
         colorId: 7,
-        active: true
+        active: true,
+        tasks: [
+            {
+                id: 1,
+                content: 'Изучить JavaScript',
+                completed: false
+            },
+            {
+                id: 2,
+                content: 'Изучить паттерны проектирования',
+                completed: true
+            }
+        ]
     },
     {
-        id: 1,
+        id: 2,
         title: 'Games',
         colorId: 6,
         active: false
     },
     {
-        id: 1,
+        id: 3,
         title: 'Shop',
         colorId: 3,
-        active: true
+        active: false
     }
 ]
 
@@ -77,8 +89,9 @@ function App() {
         setFolders(newFolders);
     }
 
-    const onRemoveFolder = (obj) => {
-        console.log(obj);
+    const onRemoveFolder = (id) => {
+        const newFolders = folders.filter(folder => folder.id !== id);
+        setFolders(newFolders);
     }
 
     return (
@@ -91,10 +104,10 @@ function App() {
                         active: false
                     }
                 ]}/>
-                <Folders items={folders} onRemoveFolder={onRemoveFolder}/>
+                <Folders folders={folders} onRemoveFolder={onRemoveFolder}/>
                 <AddButton onCreateFolder={onCreateFolder}/>
             </div>
-            <Main/>
+            <Main folders={folders}/>
         </div>
     );
 }
