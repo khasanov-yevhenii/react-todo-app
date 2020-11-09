@@ -1,9 +1,10 @@
 import React, {useState} from "react";
 import Folders from "./components/Folders/Folders";
-
-import listSvg from "./assets/images/list.svg";
 import AddButton from "./components/AddButton/AddButton";
 import AllTasks from "./components/AllTasks/AllTasks";
+import Main from "./components/Main/Main";
+
+import listSvg from "./assets/images/list.svg";
 
 
 const colors = [
@@ -76,6 +77,10 @@ function App() {
         setFolders(newFolders);
     }
 
+    const onRemoveFolder = (obj) => {
+        console.log(obj);
+    }
+
     return (
         <div className="todo">
             <div className="todo__sidebar">
@@ -86,12 +91,10 @@ function App() {
                         active: false
                     }
                 ]}/>
-                <Folders items={folders}/>
+                <Folders items={folders} onRemoveFolder={onRemoveFolder}/>
                 <AddButton onCreateFolder={onCreateFolder}/>
             </div>
-            <div className="todo__main">
-                m
-            </div>
+            <Main/>
         </div>
     );
 }
