@@ -1,7 +1,8 @@
 import React from "react";
 
-import "./Folders.scss";
 import removeSvg from './../../assets/images/remove.svg';
+import "./Folders.scss";
+
 
 const Folders = (props) => {
     return (

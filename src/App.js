@@ -1,8 +1,9 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import Folders from "./components/Folders/Folders";
 import AddButton from "./components/AddButton/AddButton";
 import AllTasks from "./components/AllTasks/AllTasks";
 import Main from "./components/Main/Main";
+import {useHistory} from "react-router-dom";
 
 
 const colors = [
@@ -48,7 +49,6 @@ const baseFolders = [
         id: 1,
         title: 'Lessons',
         colorId: 7,
-        active: true,
         tasks: [
             {
                 id: 1,
@@ -68,7 +68,6 @@ const baseFolders = [
         id: 2,
         title: 'Games',
         colorId: 6,
-        active: false,
         tasks: [
             {
                 id: 3,
@@ -82,7 +81,6 @@ const baseFolders = [
         id: 3,
         title: 'Shop',
         colorId: 3,
-        active: false,
         tasks: [
             {
                 id: 4,
@@ -100,7 +98,9 @@ function App() {
             item.color = colors.filter(color => color.id === item.colorId)[0].name;
             return item;
         }));
-    const [activeItem, setActiveItem] = useState(baseFolders[0]);
+    // const [activeItem, setActiveItem] = useState(baseFolders[0]);
+    const [activeItem, setActiveItem] = useState(null);
+    let history = useHistory();
 
     const onCreateFolder = (obj) => {
         const newFolders = [...folders, obj];
@@ -113,6 +113,7 @@ function App() {
     }
 
     const onActiveItem = (item) => {
+        history.push(`folder/${item.id}`);
         setActiveItem(item);
     }
 
@@ -126,25 +127,44 @@ function App() {
         setFolders(newFolders);
     }
 
+    const onRemoveTask = (folderId, taskId) => {
+        const newFolders = folders.map(folder => {
+            if (folder.id === folderId) {
+                folder.tasks = folder.tasks.filter(task => task.id !== taskId);
+            }
+            return folder;
+        });
+        setFolders(newFolders);
+    }
+
     const onCreateTask = (folderId, newTask) => {
         const newFolders = folders.map(folder => {
             if (folder.id === folderId) {
-                folder.tasks = [...folder.tasks, newTask];
+                folder.tasks = folder.tasks ? [...folder.tasks, newTask] : [newTask];
             }
             return folder;
         })
         setFolders(newFolders);
     }
 
+    useEffect(() => {
+        const folderId = history.location.pathname.split('folder/')[1];
+        if (folders) {
+            const newActiveItem = folders.find(folder => folder.id === Number(folderId));
+            setActiveItem(newActiveItem);
+        }
+    }, [folders, history.location.pathname])
+
     return (
         <div className="todo">
             <div className="todo__sidebar">
-                <AllTasks/>
+                <AllTasks onActiveItem={onActiveItem}/>
                 <Folders folders={folders} activeItem={activeItem} onActiveItem={onActiveItem}
                          onRemoveFolder={onRemoveFolder}/>
                 <AddButton onCreateFolder={onCreateFolder}/>
             </div>
-            {activeItem && <Main folder={activeItem} onEditTitle={onEditTitle} onCreateTask={onCreateTask}/>}
+            <Main folders={folders} activeItem={activeItem} onEditTitle={onEditTitle} onCreateTask={onCreateTask}
+                  onRemoveTask={onRemoveTask}/>
         </div>
     );
 }

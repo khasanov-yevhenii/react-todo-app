@@ -1,7 +1,8 @@
 import React, {useState} from "react";
 
-import editSvg from "./../../../assets/images/edit.svg";
-import addSvg from "./../../../assets/images/add.svg";
+import editSvg from "../../../assets/images/edit.svg";
+import addSvg from "../../../assets/images/add.svg";
+import removeSvg from "../../../assets/images/remove.svg";
 import "./Tasks.scss";
 
 
@@ -35,7 +36,7 @@ const Tasks = (props) => {
     return (
         <div className="tasks">
             <div className="tasks__top">
-                <h2 className="tasks__title">{props.folder.title}</h2>
+                <h2 className="tasks__title" style={{color: props.folder.color}}>{props.folder.title}</h2>
                 <img src={editSvg} alt="edit" onClick={() => {
                     editTitle(props.folder.id, props.folder.title);
                 }}/>
@@ -55,11 +56,15 @@ const Tasks = (props) => {
                                 </label>
                             </div>
                             <p className="text">{task.content}</p>
+                            <div className="buttons">
+                                <img src={removeSvg} alt="remove" onClick={() => {
+                                    props.onRemoveTask(props.folder.id, task.id);
+                                }}/>
+                            </div>
                         </div>
                     ))
                 }
             </div>
-
             <div className="tasks__form">
                 {
                     openForm ? (
@@ -81,9 +86,7 @@ const Tasks = (props) => {
                         </div>
                     )
                 }
-
             </div>
-
         </div>
     );
 }

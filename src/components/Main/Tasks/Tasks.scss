@@ -1,4 +1,8 @@
 .tasks {
+  &:not(:last-of-type) {
+    margin-bottom: 30px;
+  }
+
   &__top {
     position: relative;
     display: flex;
@@ -48,6 +52,12 @@
     align-items: center;
     margin-bottom: 20px;
 
+    &:hover {
+      .buttons img {
+        opacity: 1;
+      }
+    }
+
     .checkbox {
       input {
         display: none;
@@ -91,12 +101,21 @@
     }
 
     .text {
+      flex: 1;
       font-style: normal;
       font-weight: 500;
       font-size: 16px;
       line-height: 19px;
       color: #000000;
       margin-left: 15px;
+    }
+
+    .buttons {
+      img {
+        opacity: 0;
+        cursor: pointer;
+        padding: 5px;
+      }
     }
   }
 
