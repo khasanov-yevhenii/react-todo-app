@@ -32,6 +32,17 @@
     color: #64C4ED;
   }
 
+  &__items {
+    h2 {
+      font-style: normal;
+      font-weight: bold;
+      text-align: center;
+      font-size: 32px;
+      line-height: 39px;
+      color: #C9D1D3;
+    }
+  }
+
   &__item {
     display: flex;
     align-items: center;
@@ -86,6 +97,64 @@
       line-height: 19px;
       color: #000000;
       margin-left: 15px;
+    }
+  }
+
+  &__form_close {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+
+    span {
+      font-style: normal;
+      font-weight: 500;
+      font-size: 16px;
+      line-height: 19px;
+      letter-spacing: 0.15px;
+      color: #B4B4B4;
+      margin-left: 20px;
+    }
+  }
+
+  &__form_open {
+    margin-top: 20px;
+  }
+
+  &__form-field {
+    width: 100%;
+    border: 1px solid #EFEFEF;
+    box-sizing: border-box;
+    border-radius: 4px;
+    padding: 10px 20px;
+    margin-bottom: 10px;
+  }
+
+  &__form-add {
+    background-color: #4DD599;
+    border-radius: 4px;
+    color: #FFFFFF;
+    border: none;
+    padding: 10px 20px;
+    width: 100%;
+    max-width: 145px;
+
+    &:hover {
+      background: darken(#4DD599, 10%);
+    }
+  }
+
+  &__form-back {
+    background-color: #F4F6F8;
+    border-radius: 4px;
+    color: #9C9C9C;
+    border: none;
+    padding: 10px 20px;
+    width: 100%;
+    max-width: 90px;
+    margin-left: 10px;
+
+    &:hover {
+      background: darken(#F4F6F8, 10%);
     }
   }
 }

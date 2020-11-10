@@ -1,18 +1,17 @@
 import React from "react";
 
-const AllTasks = (props) => {
+import listSvg from "./../../assets/images/list.svg";
+
+
+const AllTasks = () => {
     return (
         <ul className="todo__items">
-            {
-                props.items.map(item => (
-                    <li className={item.active ? 'active' : ''} key={item.title}>
-                        <i>
-                            <img src={item.icon} alt="list"/>
-                        </i>
-                        <span>{item.title}</span>
-                    </li>
-                ))
-            }
+            <li>
+                <i>
+                    <img src={listSvg} alt="list"/>
+                </i>
+                <span>All tasks</span>
+            </li>
         </ul>
     );
 }

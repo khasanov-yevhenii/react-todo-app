@@ -4,8 +4,6 @@ import AddButton from "./components/AddButton/AddButton";
 import AllTasks from "./components/AllTasks/AllTasks";
 import Main from "./components/Main/Main";
 
-import listSvg from "./assets/images/list.svg";
-
 
 const colors = [
     {
@@ -54,11 +52,13 @@ const baseFolders = [
         tasks: [
             {
                 id: 1,
+                folderId: 1,
                 content: 'Изучить JavaScript',
                 completed: false
             },
             {
                 id: 2,
+                folderId: 1,
                 content: 'Изучить паттерны проектирования',
                 completed: true
             }
@@ -68,21 +68,39 @@ const baseFolders = [
         id: 2,
         title: 'Games',
         colorId: 6,
-        active: false
+        active: false,
+        tasks: [
+            {
+                id: 3,
+                folderId: 2,
+                content: 'Пройт КаЭс',
+                completed: false
+            }
+        ]
     },
     {
         id: 3,
         title: 'Shop',
         colorId: 3,
-        active: false
+        active: false,
+        tasks: [
+            {
+                id: 4,
+                folderId: 3,
+                content: 'Изучить Джаэс',
+                completed: false
+            }
+        ]
     }
 ]
 
 function App() {
-    const [folders, setFolders] = useState(baseFolders.map(item => {
-        item.color = colors.filter(color => color.id === item.colorId)[0].name;
-        return item;
-    }));
+    const [folders, setFolders] = useState(
+        baseFolders.map(item => {
+            item.color = colors.filter(color => color.id === item.colorId)[0].name;
+            return item;
+        }));
+    const [activeItem, setActiveItem] = useState(baseFolders[0]);
 
     const onCreateFolder = (obj) => {
         const newFolders = [...folders, obj];
@@ -94,20 +112,39 @@ function App() {
         setFolders(newFolders);
     }
 
+    const onActiveItem = (item) => {
+        setActiveItem(item);
+    }
+
+    const onEditTitle = (id, title) => {
+        const newFolders = folders.map(folder => {
+            if (folder.id === id) {
+                folder.title = title;
+            }
+            return folder;
+        });
+        setFolders(newFolders);
+    }
+
+    const onCreateTask = (folderId, newTask) => {
+        const newFolders = folders.map(folder => {
+            if (folder.id === folderId) {
+                folder.tasks = [...folder.tasks, newTask];
+            }
+            return folder;
+        })
+        setFolders(newFolders);
+    }
+
     return (
         <div className="todo">
             <div className="todo__sidebar">
-                <AllTasks items={[
-                    {
-                        icon: listSvg,
-                        title: "All tasks",
-                        active: false
-                    }
-                ]}/>
-                <Folders folders={folders} onRemoveFolder={onRemoveFolder}/>
+                <AllTasks/>
+                <Folders folders={folders} activeItem={activeItem} onActiveItem={onActiveItem}
+                         onRemoveFolder={onRemoveFolder}/>
                 <AddButton onCreateFolder={onCreateFolder}/>
             </div>
-            <Main folders={folders}/>
+            {activeItem && <Main folder={activeItem} onEditTitle={onEditTitle} onCreateTask={onCreateTask}/>}
         </div>
     );
 }

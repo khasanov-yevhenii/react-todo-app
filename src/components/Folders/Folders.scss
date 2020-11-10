@@ -1,9 +1,14 @@
 .folder-title {
   flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  max-width: 135px;
+  text-overflow: ellipsis;
 }
 
 .folder-remove {
   opacity: 0;
+  padding: 3px;
 }
 
 .badge {

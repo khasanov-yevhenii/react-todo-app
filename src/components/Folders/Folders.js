@@ -7,8 +7,9 @@ const Folders = (props) => {
     return (
         <ul className="todo__items">
             {
-                props.folders.map(folder => (
-                    <li className={folder.active ? 'active' : ''} key={folder.title}>
+                props.folders.map((folder, index) => (
+                    <li className={props.activeItem && props.activeItem.id === folder.id ? 'active' : ''} key={index}
+                        onClick={() => props.onActiveItem(folder)}>
                         <span className={"badge " + folder.color}/>
                         <span className="folder-title">{folder.title}</span>
                         <img onClick={() => {
