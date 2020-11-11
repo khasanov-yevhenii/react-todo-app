@@ -1,10 +1,12 @@
-import React, {useState} from "react";
+import React, {useContext, useState} from "react";
 
 import addSvg from "./../../../../assets/images/add.svg";
 import "./TasksForm.scss";
+import {Context} from "../../../../context";
 
 
 const TasksForm = (props) => {
+    const {state, dispatch} = useContext(Context);
     const [openForm, setOpenForm] = useState(false);
     const [inputValue, setInputValue] = useState('');
 
@@ -20,7 +22,11 @@ const TasksForm = (props) => {
             content: inputValue,
             completed: false
         }
-        props.onCreateTask(props.folderId, task);
+        dispatch({
+            type: "CREATE_TASK",
+            folderId: props.folderId,
+            newTask: task
+        })
         toggleVisibilityForm();
     }
 

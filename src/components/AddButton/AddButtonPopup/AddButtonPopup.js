@@ -1,17 +1,22 @@
-import React, {useState} from "react";
+import React, {useContext, useState} from "react";
 
 import "./AddButtonPopup.scss";
 import closeSvg from './../../../assets/images/close.svg';
+import {Context} from "../../../context";
 
 const AddButtonPopup = (props) => {
+    const {dispatch} = useContext(Context);
     const [folderName, setFolderName] = useState('');
     const [selectedColor, selectColor] = useState('#7d3865');
 
     const createFolder = () => {
-        props.onCreateFolder({
-            id: Math.random(),
-            title: folderName,
-            color: selectedColor
+        dispatch({
+            type: "CREATE_FOLDER",
+            payload: {
+                id: Math.random(),
+                title: folderName,
+                color: selectedColor
+            }
         })
         props.setOpenPopup(false);
     }

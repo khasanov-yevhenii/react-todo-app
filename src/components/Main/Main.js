@@ -1,28 +1,28 @@
-import React from "react";
+import React, {useContext} from "react";
 import Tasks from "./Tasks/Tasks";
 import {Route} from "react-router-dom";
 
 import "./Main.scss";
+import {Context} from "../../context";
 
 
 const Main = (props) => {
+    const {state} = useContext(Context);
+
+
     return (
         <div className="todo__main">
             <Route exact path="/">
                 {
-                    props.folders.map((folder, index) => (
-                        <Tasks folder={folder} onEditTitle={props.onEditTitle} onCreateTask={props.onCreateTask}
-                               onRemoveTask={props.onRemoveTask} onChangeStatus={props.onChangeStatus}
-                               key={index}/>
+                    state.folders.map((folder, index) => (
+                        <Tasks folder={folder} key={index}/>
                     ))
                 }
             </Route>
             <Route path="/folder/:id">
                 {
                     props.activeItem ? (
-                        <Tasks folder={props.activeItem} onEditTitle={props.onEditTitle}
-                               onCreateTask={props.onCreateTask}
-                               onChangeStatus={props.onChangeStatus} onRemoveTask={props.onRemoveTask}/>
+                        <Tasks folder={props.activeItem}/>
                     ) : (
                         <h2 className="not-found">Tasks not found</h2>
                     )

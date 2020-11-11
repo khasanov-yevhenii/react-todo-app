@@ -1,16 +1,23 @@
-import React from "react";
+import React, {useContext} from "react";
 
 import removeSvg from "./../../../../assets/images/remove.svg";
 import "./Task.scss";
+import {Context} from "../../../../context";
 
 
 const Task = (props) => {
+    const {dispatch} = useContext(Context);
+
     return (
         <div className="tasks__item">
             <div className="checkbox">
                 <input type="checkbox" id={`task-${props.task.id}`} defaultChecked={props.task.completed}
                        onClick={() => {
-                           props.onChangeStatus(props.folderId, props.task.id);
+                           dispatch({
+                               type: "CHANGE_STATUS",
+                               folderId: props.folderId,
+                               taskId: props.task.id
+                           })
                        }}/>
                 <label htmlFor={`task-${props.task.id}`}>
                     <svg width="11" height="8" viewBox="0 0 11 8" fill="none"
@@ -23,7 +30,11 @@ const Task = (props) => {
             <p className="text">{props.task.content}</p>
             <div className="buttons">
                 <img src={removeSvg} alt="remove" onClick={() => {
-                    props.onRemoveTask(props.folderId, props.task.id);
+                    dispatch({
+                        type: "REMOVE_TASK",
+                        folderId: props.folderId,
+                        taskId: props.task.id
+                    })
                 }}/>
             </div>
         </div>

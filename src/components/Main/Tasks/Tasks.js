@@ -1,16 +1,23 @@
-import React from "react";
+import React, {useContext} from "react";
 import Task from "./Task/Task";
 import TasksForm from "./TasksForm/TasksForm";
 
 import editSvg from "./../../../assets/images/edit.svg";
+import {Context} from "../../../context";
 import "./Tasks.scss";
 
 
 const Tasks = (props) => {
+    const {dispatch} = useContext(Context);
+
     const editTitle = (id, title) => {
         const newTitle = window.prompt('Enter new title', title);
         if (newTitle) {
-            props.onEditTitle(id, newTitle);
+            dispatch({
+                type: "EDIT_TITLE",
+                folderId: id,
+                title: newTitle
+            })
         }
     }
 
@@ -25,11 +32,11 @@ const Tasks = (props) => {
             <div className="tasks__items">
                 {
                     props.folder.tasks && props.folder.tasks.map(task => (
-                        <Task task={task} folderId={props.folder.id} onChangeStatus={props.onChangeStatus} onRemoveTask={props.onRemoveTask} key={task.id}/>
+                        <Task task={task} folderId={props.folder.id} key={task.id}/>
                     ))
                 }
             </div>
-            <TasksForm folderId={props.folder.id} onCreateTask={props.onCreateTask}/>
+            <TasksForm folderId={props.folder.id}/>
         </div>
     );
 }
