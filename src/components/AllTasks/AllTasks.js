@@ -1,17 +1,12 @@
 import React from "react";
-import {useHistory} from "react-router-dom";
 
 import listSvg from "./../../assets/images/list.svg";
 
 
-const AllTasks = () => {
-    let history = useHistory();
-
+const AllTasks = (props) => {
     return (
         <ul className="todo__items">
-            <li className="active" onClick={() => {
-                history.push('/');
-            }}>
+            <li className={props.active ? "active" : null} onClick={props.onActiveItem}>
                 <i>
                     <img src={listSvg} alt="list"/>
                 </i>

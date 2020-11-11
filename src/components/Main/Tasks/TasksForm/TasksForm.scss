@@ -1,0 +1,59 @@
+.tasks__form {
+  &_close {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+
+    span {
+      font-style: normal;
+      font-weight: 500;
+      font-size: 16px;
+      line-height: 19px;
+      letter-spacing: 0.15px;
+      color: #B4B4B4;
+      margin-left: 20px;
+    }
+  }
+
+  &_open {
+    margin-top: 20px;
+  }
+
+  &-field {
+    width: 100%;
+    border: 1px solid #EFEFEF;
+    box-sizing: border-box;
+    border-radius: 4px;
+    padding: 10px 20px;
+    margin-bottom: 10px;
+  }
+
+  &-add {
+    background-color: #4DD599;
+    border-radius: 4px;
+    color: #FFFFFF;
+    border: none;
+    padding: 10px 20px;
+    width: 100%;
+    max-width: 145px;
+
+    &:hover {
+      background: darken(#4DD599, 10%);
+    }
+  }
+
+  &-back {
+    background-color: #F4F6F8;
+    border-radius: 4px;
+    color: #9C9C9C;
+    border: none;
+    padding: 10px 20px;
+    width: 100%;
+    max-width: 90px;
+    margin-left: 10px;
+
+    &:hover {
+      background: darken(#F4F6F8, 10%);
+    }
+  }
+}

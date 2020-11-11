@@ -1,5 +1,6 @@
 .add-folder {
   &__popup {
+    z-index: 5;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -40,34 +41,6 @@
       border-radius: 50%;
       background-color: blueviolet;
       cursor: pointer;
-    }
-
-    .red {
-      background-color: #ff0000;
-    }
-
-    .yellow {
-      background-color: #cdff00;
-    }
-
-    .blue {
-      background-color: #0056ff;
-    }
-
-    .pink {
-      background-color: #EE82EE;
-    }
-
-    .green {
-      background-color: #00ff00;
-    }
-
-    .orange {
-      background-color: #EEC900;
-    }
-
-    .cyan {
-      background-color: #00CDCD;
     }
 
     .active {

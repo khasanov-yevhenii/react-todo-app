@@ -17,7 +17,7 @@ const AddButton = (props) => {
                     <span>Add folder</span>
                 </li>
             </ul>
-            {openPopup && <AddButtonPopup onCreateFolder={props.onCreateFolder} setOpenPopup={setOpenPopup}/>}
+            {openPopup && <AddButtonPopup colors={props.colors} onCreateFolder={props.onCreateFolder} setOpenPopup={setOpenPopup}/>}
         </div>
     );
 }

@@ -2,4 +2,14 @@
   width: 500px;
   padding: 55px 25px;
   overflow: auto;
+  position: relative;
+
+  .not-found {
+    position: absolute;
+    color: #C9D1D3;
+    top: 50%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%)
+  }
 }

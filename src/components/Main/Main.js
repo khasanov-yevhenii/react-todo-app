@@ -12,13 +12,21 @@ const Main = (props) => {
                 {
                     props.folders.map((folder, index) => (
                         <Tasks folder={folder} onEditTitle={props.onEditTitle} onCreateTask={props.onCreateTask}
-                               onRemoveTask={props.onRemoveTask} key={index}/>
+                               onRemoveTask={props.onRemoveTask} onChangeStatus={props.onChangeStatus}
+                               key={index}/>
                     ))
                 }
             </Route>
-            <Route exact path="/folder/:id">
-                {props.activeItem &&
-                <Tasks folder={props.activeItem} onEditTitle={props.onEditTitle} onCreateTask={props.onCreateTask}/>}
+            <Route path="/folder/:id">
+                {
+                    props.activeItem ? (
+                        <Tasks folder={props.activeItem} onEditTitle={props.onEditTitle}
+                               onCreateTask={props.onCreateTask}
+                               onChangeStatus={props.onChangeStatus} onRemoveTask={props.onRemoveTask}/>
+                    ) : (
+                        <h2 className="not-found">Tasks not found</h2>
+                    )
+                }
             </Route>
         </div>
     );

@@ -3,48 +3,9 @@ import React, {useState} from "react";
 import "./AddButtonPopup.scss";
 import closeSvg from './../../../assets/images/close.svg';
 
-const colors = [
-    {
-        id: 1,
-        name: 'red',
-        hex: '#B22222'
-    },
-    {
-        id: 2,
-        name: 'blue',
-        hex: '#191970'
-    },
-    {
-        id: 3,
-        name: 'yellow',
-        hex: '#D1FD1F'
-    },
-    {
-        id: 4,
-        name: 'pink',
-        hex: '#EE82EE'
-    },
-    {
-        id: 5,
-        name: 'green',
-        hex: '#006600'
-    },
-    {
-        id: 6,
-        name: 'orange',
-        hex: '#EEC900'
-    },
-    {
-        id: 7,
-        name: 'cyan',
-        hex: '#00CDCD'
-    },
-]
-
-
 const AddButtonPopup = (props) => {
     const [folderName, setFolderName] = useState('');
-    const [selectedColor, selectColor] = useState('red');
+    const [selectedColor, selectColor] = useState('#7d3865');
 
     const createFolder = () => {
         props.onCreateFolder({
@@ -67,10 +28,11 @@ const AddButtonPopup = (props) => {
             <div className="add-folder__colors">
                 <ul>
                     {
-                        colors.map(color => (
-                            <li className={selectedColor === color.name ? "badge active " + color.name : "badge " + color.name}
+                        props.colors.map(color => (
+                            <li className={selectedColor === color ? "badge active" : "badge"}
+                                style={{backgroundColor: color.hex}}
                                 onClick={() => {
-                                    selectColor(color.name);
+                                    selectColor(color);
                                 }} key={color.id}/>
                         ))
                     }
