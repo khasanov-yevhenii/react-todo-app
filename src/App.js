@@ -48,7 +48,11 @@ const baseFolders = [
     {
         id: 1,
         title: 'Lessons',
-        colorId: 7,
+        color: {
+            id: 7,
+            name: 'cyan',
+            hex: '#abd7eb'
+        },
         tasks: [
             {
                 id: 1,
@@ -67,7 +71,11 @@ const baseFolders = [
     {
         id: 2,
         title: 'Games',
-        colorId: 6,
+        color: {
+            id: 6,
+            name: 'orange',
+            hex: '#f8b703'
+        },
         tasks: [
             {
                 id: 3,
@@ -82,28 +90,11 @@ const baseFolders = [
                 completed: false
             }
         ]
-    },
-    {
-        id: 3,
-        title: 'Shop',
-        colorId: 3,
-        tasks: [
-            {
-                id: 5,
-                folderId: 3,
-                content: 'Изучить Джаэс',
-                completed: true
-            }
-        ]
     }
 ]
 
 function App() {
-    const [folders, setFolders] = useState(
-        baseFolders.map(folder => {
-            folder.color = colors.filter(color => color.id === folder.colorId)[0];
-            return folder;
-        }));
+    const [folders, setFolders] = useState([]);
     const [activeItem, setActiveItem] = useState(null);
     let history = useHistory();
     let location = useLocation();
@@ -167,6 +158,12 @@ function App() {
     }
 
     useEffect(() => {
+        const raw = localStorage.getItem('folders') || [];
+        setFolders(JSON.parse(raw));
+    }, [])
+
+    useEffect(() => {
+        localStorage.setItem('folders', JSON.stringify(folders));
         const folderId = history.location.pathname.split('folder/')[1];
         if (folders) {
             const newActiveItem = folders.find(folder => folder.id === Number(folderId));
