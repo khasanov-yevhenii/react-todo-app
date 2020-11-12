@@ -5,7 +5,7 @@ import closeSvg from './../../../assets/images/close.svg';
 import {Context} from "../../../context";
 
 const AddButtonPopup = (props) => {
-    const {dispatch} = useContext(Context);
+    const {state, dispatch} = useContext(Context);
     const [folderName, setFolderName] = useState('');
     const [selectedColor, selectColor] = useState('#7d3865');
 
@@ -33,7 +33,7 @@ const AddButtonPopup = (props) => {
             <div className="add-folder__colors">
                 <ul>
                     {
-                        props.colors.map(color => (
+                        state.colors.map(color => (
                             <li className={selectedColor === color ? "badge active" : "badge"}
                                 style={{backgroundColor: color.hex}}
                                 onClick={() => {

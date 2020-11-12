@@ -1,4 +1,4 @@
-import React, {useEffect, useState, useReducer} from "react";
+import React, {useEffect, useReducer} from "react";
 import Folders from "./components/Folders/Folders";
 import AddButton from "./components/AddButton/AddButton";
 import AllTasks from "./components/AllTasks/AllTasks";
@@ -11,7 +11,6 @@ import store from "./state";
 
 const App = () => {
     const [state, dispatch] = useReducer(reducer, JSON.parse(localStorage.getItem('state')) || store);
-    const [activeItem, setActiveItem] = useState(null);
     let history = useHistory();
     let location = useLocation();
 
@@ -20,25 +19,22 @@ const App = () => {
         const folderId = history.location.pathname.split('folder/')[1];
         if (state.folders) {
             const newActiveItem = state.folders.find(folder => folder.id === Number(folderId));
-            setActiveItem(newActiveItem);
+            dispatch({
+                type: "SET_ACTIVE_ITEM",
+                payload: newActiveItem
+            })
         }
-    }, [state.folders, history.location.pathname, location])
-
-    console.log(state);
+    }, [state.folders, location])
 
     return (
         <Context.Provider value={{state, dispatch}}>
             <div className="todo">
                 <div className="todo__sidebar">
-                    <AllTasks active={!activeItem} onActiveItem={() => {
-                        history.push("/");
-                    }}/>
-                    <Folders activeItem={activeItem} onActiveItem={(folder) => {
-                        history.push(`/folder/${folder.id}`);
-                    }}/>
-                    <AddButton colors={state.colors}/>
+                    <AllTasks/>
+                    <Folders/>
+                    <AddButton/>
                 </div>
-                <Main activeItem={activeItem}/>
+                <Main/>
             </div>
         </Context.Provider>
     );

@@ -2,7 +2,7 @@ let store = {
     folders: [
         {
             id: 1,
-            title: 'Lessons',
+            title: 'Test folder',
             color: {
                 id: 7,
                 name: 'cyan',
@@ -12,7 +12,7 @@ let store = {
                 {
                     id: 1,
                     folderId: 1,
-                    content: 'Изучить JavaScript',
+                    content: 'Test task',
                     completed: false
                 }
             ]

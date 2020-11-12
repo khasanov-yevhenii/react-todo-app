@@ -6,28 +6,27 @@ import "./Main.scss";
 import {Context} from "../../context";
 
 
-const Main = (props) => {
+const Main = () => {
     const {state} = useContext(Context);
-
 
     return (
         <div className="todo__main">
-            <Route exact path="/">
-                {
-                    state.folders.map((folder, index) => (
-                        <Tasks folder={folder} key={index}/>
-                    ))
-                }
-            </Route>
-            <Route path="/folder/:id">
-                {
-                    props.activeItem ? (
-                        <Tasks folder={props.activeItem}/>
-                    ) : (
-                        <h2 className="not-found">Tasks not found</h2>
-                    )
-                }
-            </Route>
+            {
+                state.folders.length ? (
+                    <>
+                        <Route exact path="/">
+                            {
+                                state.folders.map((folder, index) => (
+                                    <Tasks folder={folder} key={index}/>
+                                ))
+                            }
+                        </Route>
+                        <Route path="/folder/:id">
+                            <Tasks folder={state.activeItem}/>
+                        </Route>
+                    </>
+                ) : <h2 className="not-found">Tasks not found</h2>
+            }
         </div>
     );
 }

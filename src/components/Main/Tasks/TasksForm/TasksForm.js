@@ -6,7 +6,7 @@ import {Context} from "../../../../context";
 
 
 const TasksForm = (props) => {
-    const {state, dispatch} = useContext(Context);
+    const {dispatch} = useContext(Context);
     const [openForm, setOpenForm] = useState(false);
     const [inputValue, setInputValue] = useState('');
 

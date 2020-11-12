@@ -1,9 +1,6 @@
 const reducer = (state, action) => {
     switch (action.type) {
         case "REMOVE_FOLDER": {
-            // if (state.activeItem && state.activeItem.id === action.payload) {
-            //     history.push("/");
-            // }
             state.folders = state.folders.filter(folder => folder.id !== action.payload);
             return {...state};
         }

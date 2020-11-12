@@ -1,12 +1,25 @@
-import React from "react";
+import React, {useContext} from "react";
+import {useHistory} from "react-router-dom";
 
 import listSvg from "./../../assets/images/list.svg";
+import {Context} from "../../context";
 
 
-const AllTasks = (props) => {
+const AllTasks = () => {
+    const {state, dispatch} = useContext(Context);
+    let history = useHistory();
+
+    const handleActiveItem = () => {
+        history.push("/");
+        dispatch({
+            type: "SET_ACTIVE_ITEM",
+            payload: {}
+        })
+    }
+
     return (
         <ul className="todo__items">
-            <li className={props.active ? "active" : null} onClick={props.onActiveItem}>
+            <li className={!state.activeItem ? "active" : null} onClick={handleActiveItem}>
                 <i>
                     <img src={listSvg} alt="list"/>
                 </i>
