@@ -1,9 +1,7 @@
-import React, {useContext} from "react";
-
+import {useContext} from "react";
 import removeSvg from "./../../../../assets/images/remove.svg";
 import "./Task.scss";
-import {Context} from "../../../../context";
-
+import {Context} from "../../../../context/context";
 
 const Task = (props) => {
     const {dispatch} = useContext(Context);

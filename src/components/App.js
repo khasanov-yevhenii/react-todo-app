@@ -1,21 +1,20 @@
-import React, {useEffect, useReducer} from "react";
-import Folders from "./components/Folders/Folders";
-import AddButton from "./components/AddButton/AddButton";
-import AllTasks from "./components/AllTasks/AllTasks";
-import Main from "./components/Main/Main";
+import {useEffect, useReducer} from "react";
+import Folders from "./Folders/Folders";
+import CreateFolderButton from "./CreateFolderButton/CreateFolderButton";
+import AllTasks from "./AllTasks/AllTasks";
+import Main from "./Main/Main";
 import {useHistory, useLocation} from "react-router-dom";
-import {Context} from "./context";
-import reducer from "./reducer";
-import store from "./state";
-
+import {Context} from "../context/context";
+import reducer from "../context/reducer";
+import store from "../context/state";
 
 const App = () => {
-    const [state, dispatch] = useReducer(reducer, JSON.parse(localStorage.getItem('state')) || store);
+    const [state, dispatch] = useReducer(reducer, JSON.parse(localStorage.getItem('store')) || store);
     let history = useHistory();
     let location = useLocation();
 
     useEffect(() => {
-        localStorage.setItem('state', JSON.stringify(state));
+        localStorage.setItem('store', JSON.stringify(state));
         const folderId = history.location.pathname.split('folder/')[1];
         if (state.folders) {
             const newActiveItem = state.folders.find(folder => folder.id === Number(folderId));
@@ -32,7 +31,7 @@ const App = () => {
                 <div className="todo__sidebar">
                     <AllTasks/>
                     <Folders/>
-                    <AddButton/>
+                    <CreateFolderButton/>
                 </div>
                 <Main/>
             </div>

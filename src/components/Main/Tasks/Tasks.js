@@ -3,7 +3,7 @@ import Task from "./Task/Task";
 import TasksForm from "./TasksForm/TasksForm";
 
 import editSvg from "./../../../assets/images/edit.svg";
-import {Context} from "../../../context";
+import {Context} from "../../../context/context";
 import "./Tasks.scss";
 
 

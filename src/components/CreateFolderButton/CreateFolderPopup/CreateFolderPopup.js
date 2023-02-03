@@ -1,10 +1,9 @@
-import React, {useContext, useState} from "react";
-
-import "./AddButtonPopup.scss";
+import {useContext, useState} from "react";
+import "./CreateFolderPopup.scss";
 import closeSvg from './../../../assets/images/close.svg';
-import {Context} from "../../../context";
+import {Context} from "../../../context/context";
 
-const AddButtonPopup = (props) => {
+const CreateFolderPopup = (props) => {
     const {state, dispatch} = useContext(Context);
     const [folderName, setFolderName] = useState('');
     const [selectedColor, selectColor] = useState('#7d3865');
@@ -48,4 +47,4 @@ const AddButtonPopup = (props) => {
     );
 }
 
-export default AddButtonPopup;
+export default CreateFolderPopup;

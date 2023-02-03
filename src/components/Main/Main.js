@@ -1,10 +1,8 @@
-import React, {useContext} from "react";
+import {useContext} from "react";
 import Tasks from "./Tasks/Tasks";
 import {Route} from "react-router-dom";
-
 import "./Main.scss";
-import {Context} from "../../context";
-
+import {Context} from "../../context/context";
 
 const Main = () => {
     const {state} = useContext(Context);

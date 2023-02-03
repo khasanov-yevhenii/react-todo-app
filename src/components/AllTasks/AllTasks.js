@@ -1,9 +1,7 @@
-import React, {useContext} from "react";
+import {useContext} from "react";
 import {useHistory} from "react-router-dom";
-
 import listSvg from "./../../assets/images/list.svg";
-import {Context} from "../../context";
-
+import {Context} from "../../context/context";
 
 const AllTasks = () => {
     const {state, dispatch} = useContext(Context);

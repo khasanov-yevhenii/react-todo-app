@@ -1,10 +1,8 @@
-import React, {useState} from "react";
-import AddButtonPopup from "./AddButtonPopup/AddButtonPopup";
-
+import {useState} from "react";
 import plusSvg from './../../assets/images/plus.svg';
+import CreateFolderPopup from "./CreateFolderPopup/CreateFolderPopup";
 
-
-const AddButton = () => {
+const CreateFolderButton = () => {
     const [openPopup, setOpenPopup] = useState(false);
 
     return (
@@ -17,9 +15,9 @@ const AddButton = () => {
                     <span>Add folder</span>
                 </li>
             </ul>
-            {openPopup && <AddButtonPopup setOpenPopup={setOpenPopup}/>}
+            {openPopup && <CreateFolderPopup setOpenPopup={setOpenPopup}/>}
         </div>
     );
 }
 
-export default AddButton;
+export default CreateFolderButton;

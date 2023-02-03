@@ -1,9 +1,7 @@
-import React, {useContext, useState} from "react";
-
+import {useContext, useState} from "react";
 import addSvg from "./../../../../assets/images/add.svg";
 import "./TasksForm.scss";
-import {Context} from "../../../../context";
-
+import {Context} from "../../../../context/context";
 
 const TasksForm = (props) => {
     const {dispatch} = useContext(Context);

@@ -1,10 +1,8 @@
-import React, {useContext} from "react";
+import {useContext} from "react";
 import {useHistory} from "react-router-dom";
-
 import removeSvg from './../../assets/images/remove.svg';
 import "./Folders.scss";
-import {Context} from "../../context";
-
+import {Context} from "../../context/context";
 
 const Folders = () => {
     const {state, dispatch} = useContext(Context);
